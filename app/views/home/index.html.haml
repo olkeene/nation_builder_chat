@@ -1,0 +1,17 @@
+- if @events
+  %p
+    = link_to 'Aggregation level', root_path(:view => 'grouped')
+
+  - for e in @events do
+    = e.humanized
+    %br
+- else
+  %p
+    = link_to 'Simple level', root_path
+
+  - for time, events in @grouped_events do
+    = time
+    %br
+    - for k, count in events do
+      = pluralize count, k.to_s
+      %br
